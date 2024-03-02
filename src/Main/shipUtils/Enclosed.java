@@ -10,7 +10,7 @@ import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class Enclosed extends Polygon implements Damagable, Buyable {
+public class Enclosed implements Damagable, Buyable {
     private Polygon poly;
     private TypeEnums type;
     private Color color;
@@ -23,7 +23,6 @@ public class Enclosed extends Polygon implements Damagable, Buyable {
             System.out.println("Cannot form a polygon with less than 3 nodes!");
             return;
         }
-
         this.health = type.getHealth();
         this.type = type;
         xPoints = new int[nodes.length];
@@ -34,6 +33,10 @@ public class Enclosed extends Polygon implements Damagable, Buyable {
         }
         poly = new Polygon(xPoints, yPoints, nodes.length);
         color = type.getColor();
+    }
+
+    public TypeEnums getType() {
+        return type;
     }
 
     public Polygon getPoly() {
@@ -53,7 +56,6 @@ public class Enclosed extends Polygon implements Damagable, Buyable {
         }
         //polygon loop
         area += xPoints[n-1] *yPoints[0] - yPoints[n-1] * xPoints[0];
-
         area = Math.abs(area) / 2.0;
         return area;
     }
